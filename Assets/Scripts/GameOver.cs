@@ -7,7 +7,6 @@ public class GameOver : MonoBehaviour
 {
 
     [SerializeField] Canvas endGameCanvas;
-    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] ParticleSystem explosionParticle;
 
     public bool endGame = false;
@@ -15,7 +14,6 @@ public class GameOver : MonoBehaviour
     private void Start()
     {
         endGameCanvas.enabled = false;
-
     }
 
 

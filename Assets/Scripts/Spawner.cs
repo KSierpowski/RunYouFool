@@ -11,11 +11,12 @@ public class Spawner : MonoBehaviour
     private float time;
     private float spawnTime;
     private float spawnFactor = 0.05f;
-    private float delayTime = 5f;
- 
+    public float minLimit = 0.3f;
+    public float maxLimit = 0.5f;
+
+
     private void Start()
-    {
-        
+    { 
         SetRandomTime();
     }
     private void Update()
@@ -46,11 +47,11 @@ public class Spawner : MonoBehaviour
     }
     private void ChangeSpawnTime()
     {
-        if (minTime >= 0.1)
+        if (minTime >= minLimit)
         {
             minTime -= spawnFactor * Time.deltaTime;
         }
-        else if (maxTime >= 0.3)
+        else if (maxTime >= maxLimit)
         {
             maxTime -= spawnFactor * Time.deltaTime;
         }
