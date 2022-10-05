@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public float scoreAmount = 0f;
-    public float increasedPerSeconds = 5;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI finalScore;
+    [SerializeField] float scoreAmount = 0f;
+    [SerializeField] float increasedPerSeconds = 5;
 
     public bool countScore;
     GameOver gameOver;
@@ -32,6 +33,7 @@ public class Score : MonoBehaviour
     {
         scoreAmount += increasedPerSeconds * Time.deltaTime;
         scoreText.text = scoreAmount.ToString("0");
+        finalScore.text = scoreAmount.ToString("0");
     }
     private void StopCount()
     {
