@@ -28,13 +28,12 @@ public class Spawner : MonoBehaviour
         }
 
     }
-
     private void SpawnObject()
     {
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, 10); 
         time = 0;
-        Instantiate(spawnObject, transform.position, spawnObject.transform.rotation);
+        Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
     }
-
     private void SetRandomTime()
     {
         spawnTime = Random.Range(minTime, maxTime);
