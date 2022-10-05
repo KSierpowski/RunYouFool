@@ -10,13 +10,18 @@ public class Spawner : MonoBehaviour
     public float minTime = 1;
     private float time;
     private float spawnTime;
+    private float spawnFactor = 0.05f;
+    private float delayTime = 5f;
  
     private void Start()
     {
+        
         SetRandomTime();
-        time = minTime;
     }
-
+    private void Update()
+    {
+        Invoke("ChangeSpawnTime", 5);
+    }
     private void FixedUpdate()
     {
         time += Time.deltaTime;
@@ -30,13 +35,26 @@ public class Spawner : MonoBehaviour
     }
     private void SpawnObject()
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, 10); 
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -2.5f); 
         time = 0;
         Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
     }
     private void SetRandomTime()
     {
         spawnTime = Random.Range(minTime, maxTime);
+        
+    }
+    private void ChangeSpawnTime()
+    {
+        if (minTime >= 0.1)
+        {
+            minTime -= spawnFactor * Time.deltaTime;
+        }
+        else if (maxTime >= 0.3)
+        {
+            maxTime -= spawnFactor * Time.deltaTime;
+        }
+        else return;
     }
 
 }
