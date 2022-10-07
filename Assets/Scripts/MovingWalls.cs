@@ -10,7 +10,6 @@ public class MovingWalls : MonoBehaviour
     public Vector3 startPos;
     public Vector3 endPos;
     [SerializeField] Transform target;
-    public GameObject player;
     private void Start()
     {
         startPos = transform.position;
@@ -43,12 +42,13 @@ public class MovingWalls : MonoBehaviour
     }
     private IEnumerator MoveWall()
     { 
-        //todo do until player is alive
-            ClampWalls();
-            yield return new WaitForSeconds(30f);
-            goForward = true;
-            yield return new WaitForSeconds(15f);
-            goForward = false;
+        ClampWalls();
+        yield return new WaitForSeconds(30f);
+        goForward = true;
+        yield return new WaitForSeconds(20f);
+        goForward = false;
+        yield return new WaitForSeconds(30f);
+        goForward = true;
 
     }
 }

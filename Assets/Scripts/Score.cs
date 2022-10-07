@@ -7,7 +7,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI finalScore;
-    [SerializeField] float scoreAmount = 0f;
+    [SerializeField] public float scoreAmount = 0f;
     [SerializeField] float increasedPerSeconds = 5;
 
     public bool countScore;
