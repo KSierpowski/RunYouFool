@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,22 +7,29 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float speed = 100f;
 
+    Bonus bonus;
     public Rigidbody rb;
 
+    private void Start()
+    {
+        bonus = GetComponent<Bonus>();
+    }
 
     private void FixedUpdate()
     {
         if (Input.GetKey("a"))
         {
-            rb.AddForce(-Vector3.right * speed * Time.deltaTime);
+            rb.AddForce(-Vector3.right * GetSpeed() * Time.deltaTime);
         }
         if (Input.GetKey("d"))
         {
-            rb.AddForce(Vector3.right * speed * Time.deltaTime);
+            rb.AddForce(Vector3.right * GetSpeed() * Time.deltaTime);
         }
-
+    }
+    public float GetSpeed()
+    {
+        return bonus.currentSpeed;
 
     }
 }
