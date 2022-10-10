@@ -8,12 +8,12 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] Canvas endGameCanvas;
     [SerializeField] ParticleSystem explosionParticle;
-    BonusPickup bonusPickup;
     public bool endGame = false;
+    Bonus bonus;
 
     private void Start()
     {
-        bonusPickup = GetComponent<BonusPickup>();
+        bonus = GetComponent<Bonus>();
         endGameCanvas.enabled = false;
     }
 
@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            if (bonusPickup.isUntouchable == true) return;
+            if (bonus.isUntouchable == true) return;
             else
             {
                 endGame = true;
