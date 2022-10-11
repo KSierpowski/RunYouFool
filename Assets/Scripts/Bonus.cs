@@ -8,10 +8,10 @@ public class Bonus : MonoBehaviour
     public bool isUntouchable = false;
     public bool isSpeed = false;
     public bool isSize = false;
+    public bool stopWalls = false;
     public float bonusTime = 10f;
     public float currentSpeed = 0;
     public float speedMultiplier = 2f;
-
 
     Movement movement;
 
@@ -36,6 +36,21 @@ public class Bonus : MonoBehaviour
         {
             isSize = true;
             StartCoroutine(Size());
+        }
+        if (other.gameObject.tag == "StopWalls")
+        {
+            stopWalls = true;
+            StartCoroutine(MovingWalls());
+        }
+    }
+
+    private IEnumerator MovingWalls()
+    {
+        if(stopWalls == true)
+        {
+            yield return new WaitForSeconds(10f);
+            stopWalls = false;
+
         }
     }
     private IEnumerator Size()

@@ -6,12 +6,16 @@ public class MovingWalls : MonoBehaviour
 {
     public float speed = 1.0f;
     public float distancetoMove = 10f;
-    public bool goForward=false;
+    public bool goForward = false;
     public Vector3 startPos;
     public Vector3 endPos;
     [SerializeField] Transform target;
+
+    Bonus bonus;
+
     private void Start()
     {
+        bonus = GameObject.FindWithTag("Player").GetComponent<Bonus>();
         startPos = transform.position;
 
         if(gameObject.name == "LeftWall")
@@ -27,8 +31,15 @@ public class MovingWalls : MonoBehaviour
     void Update()
     {
         StartCoroutine(MoveWall());
+        BonusTrigger();
     }
-
+    private void BonusTrigger()
+    {
+        if(bonus.stopWalls == true)
+        {
+            StopAllCoroutines();
+        }
+    }
     private void ClampWalls()
     {
         if (goForward)
@@ -41,14 +52,19 @@ public class MovingWalls : MonoBehaviour
         }
     }
     private IEnumerator MoveWall()
-    { 
-        ClampWalls();
-        yield return new WaitForSeconds(30f);
-        goForward = true;
-        yield return new WaitForSeconds(20f);
-        goForward = false;
-        yield return new WaitForSeconds(30f);
-        goForward = true;
+    {
+        if(bonus.stopWalls == false)
+        {
+            ClampWalls();
+            for (int i = 0; i < Mathf.Infinity; i++)
+            {
+                yield return new WaitForSeconds(10f);
+                goForward = true;
+                yield return new WaitForSeconds(10f);
+                goForward = false;
+            }
+        }
 
+   
     }
 }
