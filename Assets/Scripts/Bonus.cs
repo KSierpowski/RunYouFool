@@ -7,8 +7,11 @@ public class Bonus : MonoBehaviour
 {   
     public bool isUntouchable = false;
     public bool isSpeed = false;
+    public bool isSize = false;
+    public float bonusTime = 10f;
     public float currentSpeed = 0;
     public float speedMultiplier = 2f;
+
 
     Movement movement;
 
@@ -19,29 +22,52 @@ public class Bonus : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Immortale")
+        if (other.gameObject.tag == "Immortale")
         {
             isUntouchable = true;
             StartCoroutine(Immortale());
         }
-        if (other.gameObject.name == "Speed")
+        if (other.gameObject.tag == "Speed")
         {
             isSpeed = true;
             StartCoroutine(Speed());
+        }
+        if (other.gameObject.tag == "Size")
+        {
+            isSize = true;
+            StartCoroutine(Size());
+        }
+    }
+    private IEnumerator Size()
+    {
+        if(isSize == true)
+        {
+            transform.localScale += new Vector3(25, 25, 25);
+            yield return new WaitForSeconds(bonusTime);
+            isSize = false;
+            transform.localScale -= new Vector3(25, 25, 25);
+            yield return null;
         }
     }
 
     private IEnumerator Speed()
     {
-        currentSpeed = movement.GetSpeed() * speedMultiplier;
-        yield return new WaitForSeconds(10f);
+        if(isSpeed == true)
+        {
+            currentSpeed = movement.GetSpeed() * speedMultiplier;
+            yield return new WaitForSeconds(bonusTime);
+            currentSpeed = movement.GetSpeed() / speedMultiplier;
+            isSpeed = false;
+            yield return null;
+        }
+
     }
 
     private IEnumerator Immortale()
     {
         if(isUntouchable == true)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(bonusTime);
             isUntouchable = false;
             yield return null;
         }

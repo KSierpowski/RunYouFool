@@ -8,10 +8,11 @@ public class BonusSpawner : MonoBehaviour
     public Transform[] spawnPoints;
     public List<GameObject> spawnedObjects; 
     public int spawnCount; 
+    public float spawnTime;
     private int objectIndex; 
     private int spawnIndex;
     private void Start()
-    {
+    {   
         StartCoroutine(RandomSpawn());
     }
 
@@ -30,7 +31,7 @@ public class BonusSpawner : MonoBehaviour
         while(spawnCount > 0)
         {
             Spawn();
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(spawnTime);
         }
 
     }
