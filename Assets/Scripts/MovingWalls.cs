@@ -26,45 +26,35 @@ public class MovingWalls : MonoBehaviour
         {
             endPos = transform.position - Vector3.right * distancetoMove;
         }
-        
+        Invoke("ClampWalls", 10);
     }
     void Update()
     {
-        StartCoroutine(MoveWall());
         BonusTrigger();
     }
     private void BonusTrigger()
     {
-        if(bonus.stopWalls == true)
+        if (bonus.stopWalls == true)
         {
-            StopAllCoroutines();
-        }
-    }
-    private void ClampWalls()
-    {
-        if (goForward)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+            
+            ResetWalls();
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
-        }
-    }
-    private IEnumerator MoveWall()
-    {
-        if(bonus.stopWalls == false)
-        {
             ClampWalls();
-            for (int i = 0; i < Mathf.Infinity; i++)
-            {
-                yield return new WaitForSeconds(10f);
-                goForward = true;
-                yield return new WaitForSeconds(10f);
-                goForward = false;
-            }
         }
 
-   
     }
+    private void ClampWalls()
+    {
+        goForward = true;
+        transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+        
+    }
+    private void ResetWalls()
+    {
+        goForward = false;
+        transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
+    }
+    
 }

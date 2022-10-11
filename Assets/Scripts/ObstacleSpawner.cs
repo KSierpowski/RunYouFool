@@ -36,7 +36,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void SpawnObject()
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -2.5f); 
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -4f); 
         time = 0;
         Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
     }
