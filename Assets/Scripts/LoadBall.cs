@@ -7,7 +7,6 @@ public class LoadBall : MonoBehaviour
 {
     public GameObject[] ballPrefab;
     public Transform spawnPoint;
-   // public TMP_Text nameText;
 
 
     void Start()
@@ -15,7 +14,6 @@ public class LoadBall : MonoBehaviour
         int selectedBall = PlayerPrefs.GetInt("selectedBall");
         GameObject prefab = ballPrefab[selectedBall];
         GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-       // nameText.text = prefab.name;
     }
 
 

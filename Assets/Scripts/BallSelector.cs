@@ -9,11 +9,11 @@ public class BallSelector : MonoBehaviour
 {
     public GameObject[] balls;
     public int selectedBall = 0;
-    //public TMP_Text nameText;
+    public TMP_Text nameText;
 
-    private void Start()
+    private void Update()
     {
-        //nameText.text = ;
+        nameText.text = balls[selectedBall].ToString();
     }
 
     public void NextChoice()
