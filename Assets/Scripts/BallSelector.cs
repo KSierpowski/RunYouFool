@@ -9,8 +9,12 @@ public class BallSelector : MonoBehaviour
 {
     public GameObject[] balls;
     public int selectedBall = 0;
+    //public TMP_Text nameText;
 
-
+    private void Start()
+    {
+        //nameText.text = ;
+    }
 
     public void NextChoice()
     {

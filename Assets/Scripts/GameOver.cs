@@ -7,34 +7,27 @@ public class GameOver : MonoBehaviour
 {
 
     [SerializeField] Canvas endGameCanvas;
-    [SerializeField] ParticleSystem explosionParticle;
-    public bool endGame = false;
-    Bonus bonus;
+    Movement movement;
+
 
     private void Start()
     {
-        bonus = GetComponent<Bonus>();
+        movement = GameObject.FindWithTag("Player").GetComponent<Movement>();
         endGameCanvas.enabled = false;
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (movement.isCollision == true)
         {
-            if (bonus.isUntouchable == true) return;
-            else
-            {
-                endGame = true;
-                StartCoroutine(EndGame());
-            }
+            StartCoroutine(EndGame());
         }
-       
+        
     }
     private IEnumerator EndGame()
     {
-            explosionParticle.Play();
-            GetComponent<Movement>().enabled = false;
+            
+            //GetComponent<Movement>().enabled = false;
             yield return new WaitForSeconds(1f);
             endGameCanvas.enabled = true;
             yield return null;

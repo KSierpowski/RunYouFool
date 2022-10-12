@@ -11,11 +11,11 @@ public class Score : MonoBehaviour
     [SerializeField] float increasedPerSeconds = 5;
 
     public bool countScore;
-    GameOver gameOver;
+    Movement movement;
 
     private void Start()
     {
-        gameOver = GetComponent<GameOver>();
+        movement = movement = GameObject.FindWithTag("Player").GetComponent<Movement>();
     }
 
 
@@ -37,7 +37,7 @@ public class Score : MonoBehaviour
     }
     private void StopCount()
     {
-        if (gameOver.endGame == false)
+        if (movement.isCollision == false)
         {
             countScore = true;
         }

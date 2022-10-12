@@ -57,10 +57,10 @@ public class Bonus : MonoBehaviour
     {
         if(isSize == true)
         {
-            transform.localScale += new Vector3(25, 25, 25);
+            transform.localScale += new Vector3(2, 2, 2);
             yield return new WaitForSeconds(bonusTime);
             isSize = false;
-            transform.localScale -= new Vector3(25, 25, 25);
+            transform.localScale -= new Vector3(2, 2, 2);
             yield return null;
         }
     }
