@@ -12,6 +12,10 @@ public class SceneLoader : MonoBehaviour
 
         Time.timeScale = 1;
     }
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
     public void QuitGame()
     {
         Application.Quit();
