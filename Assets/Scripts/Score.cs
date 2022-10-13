@@ -10,12 +10,16 @@ public class Score : MonoBehaviour
     [SerializeField] public float scoreAmount = 0f;
     [SerializeField] float increasedPerSeconds = 5;
 
+    [SerializeField] TextMeshProUGUI bonusAmountText;
+
     public bool countScore;
     Movement movement;
+    Bonus bonus;
 
     private void Start()
     {
-        movement = movement = GameObject.FindWithTag("Player").GetComponent<Movement>();
+        bonus = GameObject.FindWithTag("Player").GetComponent<Bonus>();
+        movement = GameObject.FindWithTag("Player").GetComponent<Movement>();
     }
 
 
@@ -26,14 +30,17 @@ public class Score : MonoBehaviour
         {
             CountScore();
         }
-       
+        
+        
     }
+
 
     private void CountScore()
     {
         scoreAmount += increasedPerSeconds * Time.deltaTime;
         scoreText.text = scoreAmount.ToString("0");
         finalScore.text = scoreAmount.ToString("0");
+        bonusAmountText.text = bonus.IncreaseBonus().ToString();
     }
     private void StopCount()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -13,6 +14,8 @@ public class Bonus : MonoBehaviour
     public float currentSpeed = 0;
     public float speedMultiplier = 2f;
 
+    public int catchedBonuses = 0;
+
     Movement movement;
 
     private void Start()
@@ -20,25 +23,36 @@ public class Bonus : MonoBehaviour
         movement = GetComponent<Movement>();
         
     }
+
+    public int IncreaseBonus()
+    {
+        return catchedBonuses;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Immortale")
         {
+            catchedBonuses++;
             isUntouchable = true;
             StartCoroutine(Immortale());
         }
         if (other.gameObject.tag == "Speed")
         {
+            catchedBonuses++;
             isSpeed = true;
             StartCoroutine(Speed());
         }
         if (other.gameObject.tag == "Size")
         {
+            catchedBonuses++;
             isSize = true;
             StartCoroutine(Size());
         }
         if (other.gameObject.tag == "StopWalls")
         {
+            catchedBonuses++;
             stopWalls = true;
             StartCoroutine(MovingWalls());
         }
