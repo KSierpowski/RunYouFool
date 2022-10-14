@@ -9,16 +9,22 @@ public class MovingWalls : MonoBehaviour
     public bool goForward = false;
     public Vector3 startPos;
     public Vector3 endPos;
-    [SerializeField] Transform target;
 
     Bonus bonus;
 
     private void Start()
     {
         bonus = GameObject.FindWithTag("Player").GetComponent<Bonus>();
+
         startPos = transform.position;
 
-        if(gameObject.name == "LeftWall")
+        MoveWalls();
+        Invoke("ClampWalls", 10);
+    }
+
+    private void MoveWalls()
+    {
+        if (gameObject.name == "LeftWall")
         {
             endPos = transform.position - Vector3.left * distancetoMove;
         }
@@ -26,11 +32,11 @@ public class MovingWalls : MonoBehaviour
         {
             endPos = transform.position - Vector3.right * distancetoMove;
         }
-        Invoke("ClampWalls", 10);
     }
+
     void Update()
     {
-        BonusTrigger();
+        Invoke("BonusTrigger", 10);
     }
     private void BonusTrigger()
     {
