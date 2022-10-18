@@ -7,13 +7,15 @@ public class LoadBall : MonoBehaviour
 {
     public GameObject[] ballPrefab;
     public Transform spawnPoint;
+    public GameObject selectedPrefab;
 
-
-    void Start()
+    void Awake()
     {
         int selectedBall = PlayerPrefs.GetInt("selectedBall");
         GameObject prefab = ballPrefab[selectedBall];
+        
         GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        selectedPrefab = clone;
     }
 
 

@@ -11,15 +11,15 @@ public class Score : MonoBehaviour
     [SerializeField] float increasedPerSeconds = 5;
 
     [SerializeField] TextMeshProUGUI bonusAmountText;
-
+    [SerializeField] LoadBall loadBall;
     public bool countScore;
     Movement movement;
     Bonus bonus;
-
+     
     private void Start()
     {
-        bonus = GameObject.FindWithTag("Player").GetComponent<Bonus>();
-        movement = GameObject.FindWithTag("Player").GetComponent<Movement>();
+        bonus = loadBall.selectedPrefab.GetComponent<Bonus>();
+        movement = loadBall.selectedPrefab.GetComponent<Movement>();
     }
 
 
@@ -30,8 +30,6 @@ public class Score : MonoBehaviour
         {
             CountScore();
         }
-        
-        
     }
 
 
@@ -44,7 +42,7 @@ public class Score : MonoBehaviour
     }
     private void StopCount()
     {
-        if (movement.isCollision == false)
+        if (!movement.isCollision)
         {
             countScore = true;
         }

@@ -35,7 +35,7 @@ public class BallSelector : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.SetInt("selectedBall", selectedBall);
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
     
 }
