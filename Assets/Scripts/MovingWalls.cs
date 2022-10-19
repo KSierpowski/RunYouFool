@@ -9,12 +9,12 @@ public class MovingWalls : MonoBehaviour
     public bool goForward = false;
     public Vector3 startPos;
     public Vector3 endPos;
-
+    [SerializeField] LoadBall loadBall;
     Bonus bonus;
 
     private void Start()
     {
-        bonus = GameObject.FindWithTag("Player").GetComponent<Bonus>();
+        bonus = loadBall.selectedPrefab.GetComponent<Bonus>();
 
         startPos = transform.position;
 

@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     Bonus bonus;
     public Rigidbody rb;
 
+
     private void Start()
     {
         bonus = GetComponent<Bonus>();
@@ -35,14 +36,21 @@ public class Movement : MonoBehaviour
         {
             if (bonus.isUntouchable == true) return;
             else
-            {
+            { 
+                StartCoroutine(EndGame());
                 isCollision = true;
-                explosionParticle.Play();
-                GetComponent<Movement>().enabled = false;
             }
         }
     }
-        public float GetSpeed()
+    private IEnumerator EndGame()
+    {
+        explosionParticle.Play();
+        GetComponent<Movement>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        yield return null;
+
+    }
+    public float GetSpeed()
     {
         return bonus.currentSpeed;
 
