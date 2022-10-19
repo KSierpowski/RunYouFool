@@ -13,10 +13,11 @@ public class ObstacleSpawner : MonoBehaviour
     private float spawnFactor = 0.05f;
     public float minLimit = 0.3f;
     public float maxLimit = 0.5f;
-
+    MovingWalls walls;
 
     private void Start()
-    { 
+    {
+        walls = GetComponent<MovingWalls>();
         SetRandomTime();
     }
     private void Update()
@@ -36,9 +37,20 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void SpawnObject()
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -4f); 
-        time = 0;
-        Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
+        if (walls.goForward == false)
+        {
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -4f);
+            time = 0;
+            Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
+        }
+        else
+        {
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-13, 13), 35, -4f);
+            time = 0;
+            Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
+        }
+        
+
     }
     private void SetRandomTime()
     {
