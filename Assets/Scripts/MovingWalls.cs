@@ -9,13 +9,13 @@ public class MovingWalls : MonoBehaviour
     public bool goForward = false;
     public Vector3 startPos;
     public Vector3 endPos;
+    
     [SerializeField] LoadBall loadBall;
     Bonus bonus;
 
     private void Start()
     {
         bonus = loadBall.selectedPrefab.GetComponent<Bonus>();
-
         startPos = transform.position;
 
         MoveWalls();
@@ -37,6 +37,7 @@ public class MovingWalls : MonoBehaviour
     void Update()
     {
         Invoke("BonusTrigger", 10);
+
     }
     private void BonusTrigger()
     {
@@ -62,5 +63,5 @@ public class MovingWalls : MonoBehaviour
         goForward = false;
         transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
     }
-    
+
 }
