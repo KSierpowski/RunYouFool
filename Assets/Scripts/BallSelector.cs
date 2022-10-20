@@ -32,10 +32,10 @@ public class BallSelector : MonoBehaviour
         }
         balls[selectedBall].SetActive(true);
     }
-    public void StartGame()
+    public void StartGame(string levelName)
     {
         PlayerPrefs.SetInt("selectedBall", selectedBall);
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        SceneManager.LoadScene(levelName);
     }
     
 }
