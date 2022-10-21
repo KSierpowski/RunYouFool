@@ -5,7 +5,8 @@ using UnityEngine;
 public class BackgroundScaleChanger : MonoBehaviour
 {
     Vector3 oldScale;
-    private float speed = .15f;
+    public float speed = .15f;
+    public float distanceToMove = -10;
     MovingWalls movingWalls;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class BackgroundScaleChanger : MonoBehaviour
     {
         if (movingWalls.goForward)
         {
-            var newScale = new Vector3(30, 1, 75);
+            var newScale = new Vector3(distanceToMove, 1, 75);
             transform.localScale = Vector3.Lerp(transform.localScale, newScale, speed * Time.deltaTime);
         }
         else

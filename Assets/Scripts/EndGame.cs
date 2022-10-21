@@ -44,6 +44,7 @@ public class EndGame : MonoBehaviour
     {
         if(movement.isCollision && !isFinish) 
         {
+            bonusSpawner.SetActive(false);
             endGameCanvas.enabled = true;
         }
     }

@@ -36,9 +36,9 @@ public class Score : MonoBehaviour
     private void CountScore()
     {
         scoreAmount += increasedPerSeconds * Time.deltaTime;
-        scoreText.text = scoreAmount.ToString("0");
+        scoreText.text = (scoreAmount.ToString("0")+"  POINTS");
         finalScore.text = scoreAmount.ToString("0");
-        bonusAmountText.text = bonus.IncreaseBonus().ToString();
+        bonusAmountText.text = (bonus.IncreaseBonus().ToString() + "  BONUSES");
     }
     private void StopCount()
     {
