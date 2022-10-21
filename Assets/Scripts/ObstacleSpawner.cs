@@ -45,7 +45,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
         else
         {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-13, 13), 35, -4f);
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-11, 11), 35, -4f);
             time = 0;
             Instantiate(spawnObject, randomSpawnPosition, spawnObject.transform.rotation);
         }
