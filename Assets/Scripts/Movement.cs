@@ -8,14 +8,16 @@ using static UnityEngine.GraphicsBuffer;
 public class Movement : MonoBehaviour
 {
     [SerializeField] ParticleSystem explosionParticle;
-
+    public AudioClip explosion;
     public bool isCollision = false;
     Bonus bonus;
     public Rigidbody rb;
+    AudioSource audioSource;
 
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         bonus = GetComponent<Bonus>();
     }
 
@@ -45,6 +47,8 @@ public class Movement : MonoBehaviour
     private IEnumerator EndGame()
     {
         explosionParticle.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(explosion);
         GetComponent<Movement>().enabled = false;
         yield return new WaitForSeconds(1f);
         yield return null;
