@@ -6,7 +6,7 @@ using UnityEngine;
 public class EndGame : MonoBehaviour
 {
     public int winGameBonusAmount = 50;
-    private bool isFinish = false;
+    public bool isFinish = false;
     [SerializeField] Canvas winGameCanv;
     [SerializeField] Canvas endGameCanvas;
     [SerializeField] GameObject obstacleSpawn;
@@ -14,16 +14,19 @@ public class EndGame : MonoBehaviour
     [SerializeField] Movement movement;
     [SerializeField] LoadBall loadBall;
 
+    [SerializeField] AudioClip victory;
+    AudioSource audioSource;
     Bonus bonus;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         movement = loadBall.selectedPrefab.GetComponent<Movement>();
         bonus = loadBall.selectedPrefab.GetComponent<Bonus>();
         winGameCanv.enabled = false;
         endGameCanvas.enabled = false;  
     }
 
-    void Update()
+    public void Update()
     {
         LostGame();
         WinGame();
@@ -32,12 +35,7 @@ public class EndGame : MonoBehaviour
     {
         if (bonus.IncreaseBonus() == winGameBonusAmount)
         {
-            isFinish = true;
-            winGameCanv.enabled = true;
-            movement.enabled = false;
-            bonus.enabled = false;
-            obstacleSpawn.SetActive(false);
-            bonusSpawner.SetActive(false);
+            StartCoroutine(WinGameSeq());
         }
     }
     private void LostGame()
@@ -49,4 +47,18 @@ public class EndGame : MonoBehaviour
         }
     }
 
+    public IEnumerator WinGameSeq()
+    {
+        isFinish = true;
+        winGameCanv.enabled = true;       
+        audioSource.PlayOneShot(victory);
+        yield return new WaitForSeconds(3f);
+        audioSource.Stop();
+        audioSource.Stop();
+        movement.enabled = false;
+        bonus.enabled = false;
+        obstacleSpawn.SetActive(false);
+        bonusSpawner.SetActive(false);
+        yield return null;
+    }
 }
