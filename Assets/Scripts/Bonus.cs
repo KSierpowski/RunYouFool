@@ -16,7 +16,7 @@ public class Bonus : MonoBehaviour
     public float speedMultiplier = 2f;
     public int catchedBonuses = 0;
 
-
+    [SerializeField] Vector3 scaleVector;
 
     Movement movement;
 
@@ -44,13 +44,13 @@ public class Bonus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Immortale" && bonusLimit == false)
+        if (other.gameObject.tag == "Immortale" && !bonusLimit)
         {
             catchedBonuses++;
             isUntouchable = true;
             StartCoroutine(Immortale());
         }
-        if (other.gameObject.tag == "Speed" && bonusLimit == false)
+        if (other.gameObject.tag == "Speed" && !bonusLimit)
         {
             catchedBonuses++;
             isSpeed = true;
@@ -62,7 +62,7 @@ public class Bonus : MonoBehaviour
             isSize = true;
             StartCoroutine(Size());
         }
-        if (other.gameObject.tag == "StopWalls" && bonusLimit == false)
+        if (other.gameObject.tag == "StopWalls" && !bonusLimit)
         {
             catchedBonuses++;
             stopWalls = true;
@@ -72,7 +72,7 @@ public class Bonus : MonoBehaviour
 
     private IEnumerator MovingWalls()
     {
-        if(stopWalls == true)
+        if(stopWalls)
         {
             yield return new WaitForSeconds(10f);
             stopWalls = false;
@@ -81,19 +81,19 @@ public class Bonus : MonoBehaviour
     }
     private IEnumerator Size()
     {
-        if(isSize == true)
+        if(isSize)
         {
-            transform.localScale += new Vector3(2, 2, 2);
+            transform.localScale += scaleVector;
             yield return new WaitForSeconds(bonusTime);
             isSize = false;
-            transform.localScale -= new Vector3(2, 2, 2);
+            transform.localScale -= scaleVector;
             yield return null;
         }
     }
 
     private IEnumerator Speed()
     {
-        if(isSpeed == true)
+        if(isSpeed)
         {
             currentSpeed = movement.GetSpeed() * speedMultiplier;
             yield return new WaitForSeconds(bonusTime);
@@ -106,7 +106,7 @@ public class Bonus : MonoBehaviour
 
     private IEnumerator Immortale()
     {
-        if(isUntouchable == true)
+        if(isUntouchable)
         {
             yield return new WaitForSeconds(bonusTime);
             isUntouchable = false;
