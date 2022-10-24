@@ -42,7 +42,7 @@ public class Bonus : MonoBehaviour
         else bonusLimit = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.tag == "Immortale" && !bonusLimit)
         {

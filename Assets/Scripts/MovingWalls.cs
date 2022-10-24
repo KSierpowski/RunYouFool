@@ -41,7 +41,7 @@ public class MovingWalls : MonoBehaviour
     }
     private void BonusTrigger()
     {
-        if (bonus.stopWalls == true)
+        if (bonus.stopWalls)
         {
             
             ResetWalls();

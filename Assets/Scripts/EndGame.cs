@@ -7,16 +7,18 @@ public class EndGame : MonoBehaviour
 {
     public int winGameBonusAmount = 50;
     public bool isFinish = false;
+
     [SerializeField] Canvas winGameCanv;
     [SerializeField] Canvas endGameCanvas;
     [SerializeField] GameObject obstacleSpawn;
     [SerializeField] GameObject bonusSpawner;
     [SerializeField] Movement movement;
     [SerializeField] LoadBall loadBall;
-
     [SerializeField] AudioClip victory;
+
     AudioSource audioSource;
     Bonus bonus;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();

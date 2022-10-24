@@ -7,6 +7,7 @@ public class BonusSpawner : MonoBehaviour
     public GameObject[] objectsToSpawn;
     public Transform[] spawnPoints;
     public List<GameObject> spawnedObjects; 
+
     public int spawnCount; 
     public float spawnTime;
     private int objectIndex; 

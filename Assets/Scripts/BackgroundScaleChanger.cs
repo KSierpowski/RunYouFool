@@ -8,19 +8,17 @@ public class BackgroundScaleChanger : MonoBehaviour
     public float speed = .15f;
     public float distanceToMove = -10;
     MovingWalls movingWalls;
-    // Start is called before the first frame update
     void Start()
     {
         oldScale = new Vector3(57, 1, 75);
         movingWalls = GetComponent<MovingWalls>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         BackgroundWall();
     }
-    private void BackgroundWall()
+    private void BackgroundWall() //Change the scale of the background wall to match the position to the walls
     {
         if (movingWalls.goForward)
         {

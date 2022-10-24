@@ -37,7 +37,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void SpawnObject()
     {
-        if (walls.goForward == false)
+        if (!walls.goForward)
         {
             Vector3 randomSpawnPosition = new Vector3(Random.Range(-23, 23), 35, -4f);
             time = 0;
