@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndGame : MonoBehaviour
 {
     public int winGameBonusAmount = 50;
+    public int winGameScoreAmount = 1000;
     public bool isFinish = false;
 
     [SerializeField] Canvas winGameCanv;
@@ -18,9 +19,11 @@ public class EndGame : MonoBehaviour
 
     AudioSource audioSource;
     Bonus bonus;
+    Score score;
 
     void Start()
     {
+        score = GetComponent<Score>();
         audioSource = GetComponent<AudioSource>();
         movement = loadBall.selectedPrefab.GetComponent<Movement>();
         bonus = loadBall.selectedPrefab.GetComponent<Bonus>();
@@ -35,7 +38,7 @@ public class EndGame : MonoBehaviour
     }
     private void WinGame()
     {
-        if (bonus.IncreaseBonus() == winGameBonusAmount)
+        if (bonus.IncreaseBonus() == winGameBonusAmount || score.scoreAmount >= winGameScoreAmount)
         {
             StartCoroutine(WinGameSeq());
         }
@@ -52,15 +55,15 @@ public class EndGame : MonoBehaviour
     public IEnumerator WinGameSeq()
     {
         isFinish = true;
+        movement.enabled = false;
         winGameCanv.enabled = true;       
         audioSource.PlayOneShot(victory);
-        yield return new WaitForSeconds(3f);
-        audioSource.Stop();
-        audioSource.Stop();
-        movement.enabled = false;
         bonus.enabled = false;
         obstacleSpawn.SetActive(false);
         bonusSpawner.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        audioSource.Stop();
+        audioSource.Stop();
         yield return null;
     }
 }
