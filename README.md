@@ -8,15 +8,15 @@ The basic rule is not to get hit and collect a certain number of bonuses.
 ## Core Mechanics
 
 First, the player has to choose which ball to play. Each of them is slightly different from each other not only visually,  
-but also in the time and way the bonuses affect them, or the speed of movement.  
+but also in the time and way the stone bonuses affect them, or the speed of movement.  
 Then has to choose diffuculty and start the game.  
-The game will end when you collect 15 bonuses (each level has the same amount to collect) and of course you will avoid all falling obstacles.
+The game will end when you collect 15 stones (each level has the same amount to collect) or will score a certain number of points and of course you will avoid all falling obstacles.
 
-### Bonuses  
-- Yellow Bonus - Falling obstacles doesn't destroy your ball  
-- Pink Bonus - Stop or expand clamped walls  
-- Blue Bonus - Multiplies ball's speed  
-- Red Bonus - Increases the size of the ball (reduces the amount of collected bonuses by 1)  
+### Stones  
+- Yellow Stone - Falling obstacles doesn't destroy your ball  
+- Pink Stone - Stop or expand clamped walls  
+- Blue Stone - Multiplies ball's speed  
+- Red Stone - Increases the size of the ball (reduces the amount of collected bonuses by 1)  
 
 ## How to play  
 
